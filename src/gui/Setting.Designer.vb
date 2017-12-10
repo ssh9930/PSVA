@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Setting
     Inherits System.Windows.Forms.Form
 
     'Form은 Dispose를 재정의하여 구성 요소 목록을 정리합니다.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,26 +20,25 @@ Partial Class Setting
     '참고: 다음 프로시저는 Windows Form 디자이너에 필요합니다.
     '수정하려면 Windows Form 디자이너를 사용하십시오.  
     '코드 편집기에서는 수정하지 마세요.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Line4 = New PSVA.Line()
-        Me.AlarmPanel1 = New PSVA.AlarmPanel()
-        Me.AlarmPanel2 = New PSVA.AlarmPanel()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Panel3
         '
+        Me.Panel3.AutoScroll = True
         Me.Panel3.BackColor = System.Drawing.SystemColors.ControlLight
         Me.Panel3.Controls.Add(Me.Label14)
         Me.Panel3.Controls.Add(Me.Label15)
         Me.Panel3.Controls.Add(Me.Line4)
         Me.Panel3.Location = New System.Drawing.Point(1, 0)
         Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(430, 78)
+        Me.Panel3.Size = New System.Drawing.Size(410, 78)
         Me.Panel3.TabIndex = 16
         '
         'Label14
@@ -70,27 +69,12 @@ Partial Class Setting
         Me.Line4.Size = New System.Drawing.Size(287, 2)
         Me.Line4.TabIndex = 18
         '
-        'AlarmPanel1
-        '
-        Me.AlarmPanel1.Location = New System.Drawing.Point(0, 80)
-        Me.AlarmPanel1.Name = "AlarmPanel1"
-        Me.AlarmPanel1.Size = New System.Drawing.Size(418, 80)
-        Me.AlarmPanel1.TabIndex = 17
-        '
-        'AlarmPanel2
-        '
-        Me.AlarmPanel2.Location = New System.Drawing.Point(0, 159)
-        Me.AlarmPanel2.Name = "AlarmPanel2"
-        Me.AlarmPanel2.Size = New System.Drawing.Size(418, 80)
-        Me.AlarmPanel2.TabIndex = 18
-        '
         'Setting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(411, 536)
-        Me.Controls.Add(Me.AlarmPanel2)
-        Me.Controls.Add(Me.AlarmPanel1)
         Me.Controls.Add(Me.Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
@@ -105,6 +89,4 @@ Partial Class Setting
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Line4 As Line
-    Friend WithEvents AlarmPanel1 As AlarmPanel
-    Friend WithEvents AlarmPanel2 As AlarmPanel
 End Class

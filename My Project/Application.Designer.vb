@@ -26,13 +26,36 @@ Namespace My
             MyBase.New(Global.Microsoft.VisualBasic.ApplicationServices.AuthenticationMode.Windows)
             Me.IsSingleInstance = false
             Me.EnableVisualStyles = true
-            Me.SaveMySettingsOnExit = true
-            Me.ShutDownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
+            Me.SaveMySettingsOnExit = True
+            Me.ShutdownStyle = Global.Microsoft.VisualBasic.ApplicationServices.ShutdownMode.AfterMainFormCloses
         End Sub
-        
-        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>  _
+
+        <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.PSVA.Setting
+
+            DbgLog("OnCreateMainForm() : overrided mainform setting.")
+
+            Dim mainform As New Setting()
+            Dim cnt As Integer = 1
+
+            For Each i In AlarmList
+
+                Dim panel_ As New AlarmPanel
+
+                mainform.Controls.Add(panel_)
+                panel_.alarm_ = i
+                panel_.ReloadUIwithAlarmInfo()
+                panel_.Location = New Point(0, 80 + (cnt - 1) * 79)
+                cnt += 1
+
+            Next
+
+            DbgLog("OnCreateMainForm() : showing mainform")
+            mainform.ShowDialog()
+            DbgLog("OnCreateMainForm() : mainform closed, ending..")
+            DbgLog("Goodbye : " + Now.ToString)
+            End
+            ' Me.MainForm = Global.PSVA.Setting
         End Sub
     End Class
 End Namespace

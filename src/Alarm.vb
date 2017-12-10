@@ -44,7 +44,7 @@
                                                         End While
 
                                                         While nmin < dmin
-                                                            DbgLog("[alarmthread] 1Sterm/1Sloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
+                                                            DbgLog("[alarmthread] 1Sterm/1Sloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString) 'todo :여기서부터는 초단위로 계산하기.
                                                             Threading.Thread.Sleep(1000) '1sec
                                                         End While
 
@@ -184,6 +184,7 @@
 
 
     End Function
+
 
 
 
