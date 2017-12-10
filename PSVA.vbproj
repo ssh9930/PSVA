@@ -120,6 +120,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="src\secure\Sstring.vb" />
     <Compile Include="src\Startup.vb" />
   </ItemGroup>
   <ItemGroup>

@@ -27,11 +27,11 @@
                                                 DbgLog("[alarmthread] alarmthread started.")
 
 
-                                                For Each i As String In AlarmRingDay
-                                                    DbgLog("[alarmthread] i=" + i.ToUpper + ", alarmringday=" + Now.DayOfWeek.ToString.ToUpper _
-                                                          + ", contains=" + Now.DayOfWeek.ToString.ToUpper.Contains(i.ToUpper).ToString)
+                                                For i As Integer = 0 To AlarmRingDay.Length - 1
+                                                    DbgLog("[alarmthread] alarmringday=" + AlarmRingDay(i).ToUpper + ", now=" + Now.DayOfWeek.ToString.ToUpper _
+                                                          + ", contains=" + Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper).ToString)
 
-                                                    If Now.DayOfWeek.ToString.ToUpper.Contains(i.ToUpper) Then 'alarm day!
+                                                    If Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper) Then 'alarm day!
 
                                                         While Not dmin <= nmin + 60
                                                             DbgLog("[alarmthread] 1Hterm/1Hloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
@@ -91,7 +91,7 @@
 
         DbgLog("[s2a] executed, text=" + text)
 
-        Dim reader As New IO.StringReader(FileIO.FileSystem.ReadAllText(text)) 'peek < 0 then exit
+        Dim reader As New IO.StringReader(FileIO.FileSystem.ReadAllText(text)) 'peek < 0 then exit, sstring으로 보안.
         Dim ThisLine As String = ""
         Dim alarmsint As Integer = 0
         Dim alarms As Alarm_() = {}
@@ -112,12 +112,12 @@
 
                         DbgLog("[s2a] New alarm set detected, preparing..")
 
-                        thisalarm = New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing) 'thisalarm reset
-
                         'add thisalarm to alarms
                         ReDim Preserve alarms(alarmsint)
                         alarms(alarmsint) = thisalarm
                         alarmsint += 1
+
+                        thisalarm = New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing) 'thisalarm reset
 
                         'next loop
                         Continue While
@@ -141,12 +141,12 @@
                                 Dim returnday As String() = {}
                                 Dim continue_ As Boolean = True
 
-                                While raw.Contains(",") Or continue_
+                                While raw.Contains(",") = True Or continue_ = True
+                                    continue_ = raw.Contains(",")
                                     ReDim Preserve returnday(returndayint)
                                     returnday(returndayint) = Split(raw, ",")(0)
                                     raw = raw.Replace(Split(raw, ",")(0) + ",", "")
                                     returndayint += 1
-                                    continue_ = raw.Contains(",") 'if raw.Contains(",") = false, it means that one item is left.
                                 End While
                                 thisalarm.AlarmRingDay = returnday
 

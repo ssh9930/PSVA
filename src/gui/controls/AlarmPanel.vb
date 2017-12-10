@@ -12,6 +12,10 @@
 
         AlarmTime.Text += ":" + alarm_.AlarmRingTime(1).ToString
 
+        If alarm_.AlarmRingTime(1).ToString = 0 Then
+            AlarmTime.Text += "0"
+        End If
+
         If alarm_.AlarmRingTime(0) > 12 Then
             AlarmTime.Text += " PM"
         Else

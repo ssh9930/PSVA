@@ -79,7 +79,7 @@ Partial Class Setting
         '
         'AlarmPanel2
         '
-        Me.AlarmPanel2.Location = New System.Drawing.Point(-4, 159)
+        Me.AlarmPanel2.Location = New System.Drawing.Point(0, 159)
         Me.AlarmPanel2.Name = "AlarmPanel2"
         Me.AlarmPanel2.Size = New System.Drawing.Size(418, 80)
         Me.AlarmPanel2.TabIndex = 18
