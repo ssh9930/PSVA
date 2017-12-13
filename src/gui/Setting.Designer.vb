@@ -26,7 +26,10 @@ Partial Class Setting
         Me.Label14 = New System.Windows.Forms.Label()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Line4 = New PSVA.Line()
+        Me.NoAlarmPic = New System.Windows.Forms.PictureBox()
+        Me.NoAlarmLabel = New System.Windows.Forms.Label()
         Me.Panel3.SuspendLayout()
+        CType(Me.NoAlarmPic, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'Panel3
@@ -69,12 +72,35 @@ Partial Class Setting
         Me.Line4.Size = New System.Drawing.Size(287, 2)
         Me.Line4.TabIndex = 18
         '
+        'NoAlarmPic
+        '
+        Me.NoAlarmPic.Image = Global.PSVA.My.Resources.Resources.ic_warning_black_24dp
+        Me.NoAlarmPic.Location = New System.Drawing.Point(163, 225)
+        Me.NoAlarmPic.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.NoAlarmPic.Name = "NoAlarmPic"
+        Me.NoAlarmPic.Size = New System.Drawing.Size(70, 67)
+        Me.NoAlarmPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.NoAlarmPic.TabIndex = 17
+        Me.NoAlarmPic.TabStop = False
+        '
+        'NoAlarmLabel
+        '
+        Me.NoAlarmLabel.AutoSize = True
+        Me.NoAlarmLabel.Font = New System.Drawing.Font("Segoe UI", 11.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.NoAlarmLabel.Location = New System.Drawing.Point(67, 309)
+        Me.NoAlarmLabel.Name = "NoAlarmLabel"
+        Me.NoAlarmLabel.Size = New System.Drawing.Size(252, 20)
+        Me.NoAlarmLabel.TabIndex = 20
+        Me.NoAlarmLabel.Text = "No alarm here. You can create one."
+        '
         'Setting
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoScroll = True
         Me.ClientSize = New System.Drawing.Size(411, 536)
+        Me.Controls.Add(Me.NoAlarmLabel)
+        Me.Controls.Add(Me.NoAlarmPic)
         Me.Controls.Add(Me.Panel3)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
         Me.MaximizeBox = False
@@ -82,11 +108,17 @@ Partial Class Setting
         Me.Text = "PSVA Prototype 1"
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
+        CType(Me.NoAlarmPic, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
+
+
     Friend WithEvents Panel3 As Panel
     Friend WithEvents Label14 As Label
     Friend WithEvents Label15 As Label
     Friend WithEvents Line4 As Line
+    Friend WithEvents NoAlarmPic As PictureBox
+    Friend WithEvents NoAlarmLabel As Label
 End Class

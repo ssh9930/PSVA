@@ -32,30 +32,22 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
         Protected Overrides Sub OnCreateMainForm()
+            Me.MainForm = Global.PSVA.Setting
+            ' dont let the program run the mainform show progress.
+            'Me.MainForm = Nothing
+            DbgLog("OnCreateMainForm() : removed mainform setting.")
+            DbgLog("OnCreateMainForm() : showing mainform")
 
-            DbgLog("OnCreateMainForm() : overrided mainform setting.")
-
-            Dim mainform As New Setting()
+            Dim mainform_ As New Setting()
             Dim cnt As Integer = 1
 
-            For Each i In AlarmList
+            mainform_.ShowDialog()
+            mainform_.ReloadAlarmUI()
 
-                Dim panel_ As New AlarmPanel
-
-                mainform.Controls.Add(panel_)
-                panel_.alarm_ = i
-                panel_.ReloadUIwithAlarmInfo()
-                panel_.Location = New Point(0, 80 + (cnt - 1) * 79)
-                cnt += 1
-
-            Next
-
-            DbgLog("OnCreateMainForm() : showing mainform")
-            mainform.ShowDialog()
             DbgLog("OnCreateMainForm() : mainform closed, ending..")
             DbgLog("Goodbye : " + Now.ToString)
             End
-            ' Me.MainForm = Global.PSVA.Setting
+
         End Sub
     End Class
 End Namespace

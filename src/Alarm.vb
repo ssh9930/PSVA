@@ -97,89 +97,101 @@
         Dim alarms As Alarm_() = {}
 
         While Not reader.Peek < 0 'MAIN LOOP (actually, it doesnt have to be an 'loop'.)
-            DbgLog("[s2a] loop #1, peek=" + reader.Peek.ToString + " ( < 0 )")
-            ThisLine = reader.ReadLine()
+            Try
 
-            If Mid(ThisLine, 1, 2) = "@[" And Mid(ThisLine, ThisLine.Length - 1, 2) = "]@" Then
-                DbgLog("[s2a] First alarm set detected.")
-                Dim thisalarm As New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
+                DbgLog("[s2a] loop #1, peek=" + reader.Peek.ToString + " ( < 0 )")
+                ThisLine = reader.ReadLine()
 
-                While Not reader.Peek < 0  '2ND LOOP, if stream ends or new set detected, loop will exit.
-                    DbgLog("[s2a] loop #2, setting zone.")
-                    ThisLine = reader.ReadLine()
+                If Mid(ThisLine, 1, 2) = "@[" And Mid(ThisLine, ThisLine.Length - 1, 2) = "]@" Then
+                    DbgLog("[s2a] First alarm set detected.")
+                    Dim thisalarm As New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing)
 
-                    If Mid(ThisLine, 1, 2) = "@[" And Mid(ThisLine, ThisLine.Length - 1, 2) = "]@" Then 'preparing to set next alarm
+                    While Not reader.Peek < 0  '2ND LOOP, if stream ends or new set detected, loop will exit.
+                        Try
 
-                        DbgLog("[s2a] New alarm set detected, preparing..")
+                            DbgLog("[s2a] loop #2, peek=" + reader.Peek.ToString + " ( < 0 )")
+                            ThisLine = reader.ReadLine()
 
-                        'add thisalarm to alarms
-                        ReDim Preserve alarms(alarmsint)
-                        alarms(alarmsint) = thisalarm
-                        alarmsint += 1
+                            If Mid(ThisLine, 1, 2) = "@[" And Mid(ThisLine, ThisLine.Length - 1, 2) = "]@" Then 'preparing to set next alarm
 
-                        thisalarm = New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing) 'thisalarm reset
+                                DbgLog("[s2a] New alarm set detected, preparing..")
 
-                        'next loop
-                        Continue While
+                                'add thisalarm to alarms
+                                ReDim Preserve alarms(alarmsint)
+                                alarms(alarmsint) = thisalarm
+                                alarmsint += 1
 
-                    End If
+                                thisalarm = New Alarm_(Nothing, Nothing, Nothing, Nothing, Nothing, Nothing) 'thisalarm reset
 
-                    If Mid(ThisLine, 1, 4) = "**^*" And ThisLine.Contains("=") Then
+                                'next loop
+                                Continue While
 
-                        Select Case True
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmname"
-                                DbgLog("[s2a] alarmname set!")
-                                thisalarm.AlarmName = Split(ThisLine, "=")(1)
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmcaption"
-                                DbgLog("[s2a] alarmcaption set!")
-                                thisalarm.AlarmCaption = Split(ThisLine, "=")(1)
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmringday" 'complex!
-                                DbgLog("[s2a] alarmringday set!")
+                            End If
 
-                                Dim raw As String = Split(ThisLine, "=")(1)
-                                Dim returndayint As Integer = 0
-                                Dim returnday As String() = {}
-                                Dim continue_ As Boolean = True
+                            If Mid(ThisLine, 1, 4) = "**^*" And ThisLine.Contains("=") Then
 
-                                While raw.Contains(",") = True Or continue_ = True
-                                    continue_ = raw.Contains(",")
-                                    ReDim Preserve returnday(returndayint)
-                                    returnday(returndayint) = Split(raw, ",")(0)
-                                    raw = raw.Replace(Split(raw, ",")(0) + ",", "")
-                                    returndayint += 1
-                                End While
-                                thisalarm.AlarmRingDay = returnday
+                                Select Case True
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmname"
+                                        DbgLog("[s2a] alarmname set!")
+                                        thisalarm.AlarmName = Split(ThisLine, "=")(1)
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmcaption"
+                                        DbgLog("[s2a] alarmcaption set!")
+                                        thisalarm.AlarmCaption = Split(ThisLine, "=")(1)
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmringday" 'complex!
+                                        DbgLog("[s2a] alarmringday set!")
 
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmringtime"
-                                DbgLog("[s2a] alarmringtime set!")
-                                thisalarm.AlarmRingTime = {CInt(Split(Split(ThisLine, "=")(1), ",")(0)), CInt(Split(Split(ThisLine, "=")(1), ",")(1))}
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "schedulename"
-                                DbgLog("[s2a] schedulename set!")
-                                thisalarm.ScheduleName = Split(ThisLine, "=")(1)
-                            Case Split(ThisLine, "=")(0).Replace("**^*", "") = "scheduleringtimeafter"
-                                DbgLog("[s2a] scheduleringtimeafter set!")
-                                thisalarm.ScheduleRingTimeAfter = {CInt(Split(Split(ThisLine, "=")(1), ",")(0)), CInt(Split(Split(ThisLine, "=")(1), ",")(1))}
-                        End Select
-                    End If
+                                        Dim raw As String = Split(ThisLine, "=")(1)
+                                        Dim returndayint As Integer = 0
+                                        Dim returnday As String() = {}
+                                        Dim continue_ As Boolean = True
 
-                    If reader.Peek < 1 Then 'if it its the last line, must add thisalarm to the alarms and then could exit.
-                        DbgLog("[s2a] Last line. preparing to exit on next line..")
+                                        While raw.Contains(",") = True Or continue_ = True
+                                            continue_ = raw.Contains(",")
+                                            ReDim Preserve returnday(returndayint)
+                                            returnday(returndayint) = Split(raw, ",")(0)
+                                            raw = raw.Replace(Split(raw, ",")(0) + ",", "")
+                                            returndayint += 1
+                                        End While
+                                        thisalarm.AlarmRingDay = returnday
 
-                        'add thisalarm to alarms
-                        ReDim Preserve alarms(alarmsint)
-                        alarms(alarmsint) = thisalarm
-                        alarmsint += 1
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "alarmringtime"
+                                        DbgLog("[s2a] alarmringtime set!")
+                                        thisalarm.AlarmRingTime = {CInt(Split(Split(ThisLine, "=")(1), ",")(0)), CInt(Split(Split(ThisLine, "=")(1), ",")(1))}
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "schedulename"
+                                        DbgLog("[s2a] schedulename set!")
+                                        thisalarm.ScheduleName = Split(ThisLine, "=")(1)
+                                    Case Split(ThisLine, "=")(0).Replace("**^*", "") = "scheduleringtimeafter"
+                                        DbgLog("[s2a] scheduleringtimeafter set!")
+                                        thisalarm.ScheduleRingTimeAfter = {CInt(Split(Split(ThisLine, "=")(1), ",")(0)), CInt(Split(Split(ThisLine, "=")(1), ",")(1))}
+                                End Select
+                            End If
 
-                    End If
 
-                End While
-                DbgLog("[s2a] escaping loop #2")
 
-            End If
+                        Catch ex As Exception
+                            Continue While
+                        End Try
+                    End While
 
+                    DbgLog("[s2a] escaping loop #2")
+
+                    'add thisalarm to alarms
+                    ReDim Preserve alarms(alarmsint)
+                    alarms(alarmsint) = thisalarm
+                    alarmsint += 1
+
+                    DbgLog("[s2a] added last abandoned thisalarm to alarms.")
+
+                End If
+
+            Catch ex As Exception
+                DbgLog("[s2a] loop #1 exception : " + ex.GetType.ToString + ", continue to next line..")
+                Continue While
+            End Try
 
         End While
         DbgLog("[s2a] escaping loop #1")
+        DbgLog("[s2a] finished, returning value and exiting function.")
         Return alarms
 
 

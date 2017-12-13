@@ -14,6 +14,7 @@
         If EnableLogging Then
             FileIO.FileSystem.WriteAllText(LogPath, "[PSVA]" + text + vbCrLf, 1)
         End If
+
     End Sub
 
 End Module
