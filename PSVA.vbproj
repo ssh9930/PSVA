@@ -73,6 +73,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="src\AlarmListEventListener.vb" />
     <Compile Include="src\Events.vb" />
     <Compile Include="src\Alarm.vb" />
     <Compile Include="src\base.vb" />
@@ -81,6 +82,18 @@
     </Compile>
     <Compile Include="src\gui\Alarm.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\gui\AlarmSettingShellForm.Designer.vb">
+      <DependentUpon>AlarmSettingShellForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\gui\AlarmSettingShellForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="src\gui\controls\AlarmSettingPanel.Designer.vb">
+      <DependentUpon>AlarmSettingPanel.vb</DependentUpon>
+    </Compile>
+    <Compile Include="src\gui\controls\AlarmSettingPanel.vb">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="src\SAPI.vb" />
     <Compile Include="src\gui\controls\BorderButton.vb">
@@ -133,8 +146,14 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="src\gui\AlarmSettingShellFOrm.resx">
+      <DependentUpon>AlarmSettingShellForm.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="src\gui\controls\AlarmPanel.resx">
       <DependentUpon>AlarmPanel.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="src\gui\controls\AlarmSettingPanel.resx">
+      <DependentUpon>AlarmSettingPanel.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="src\gui\Setting.resx">
       <DependentUpon>Setting.vb</DependentUpon>

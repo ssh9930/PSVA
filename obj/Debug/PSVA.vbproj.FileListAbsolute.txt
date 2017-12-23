@@ -11,3 +11,5 @@ D:\projects\PSVA\PSVA\bin\Debug\PSVA.xml
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.exe
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.xml
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.pdb
+D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingShellForm.resources
+D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingPanel.resources

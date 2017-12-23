@@ -32,4 +32,15 @@
 
 
     End Sub
+
+    Private Sub LoadHandler() Handles MyBase.Load
+
+        AddHandler AlarmEditBtn.Click, Sub()
+
+                                           Dim wnd As New AlarmSettingShellForm(alarm_)
+                                           wnd.Show()
+
+                                       End Sub
+
+    End Sub
 End Class
