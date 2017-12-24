@@ -198,6 +198,45 @@
     End Function
 
 
+    Shared Sub AlarmsToSetting(list As Alarm_())
+        DbgLog("[a2s] called.")
+
+        Dim str As String = ""
+
+        For Each i In list
+
+            str += "@[" + i.AlarmName + "]@" + vbCrLf
+            str += "**^*alarmname=" + i.AlarmName + vbCrLf
+            str += "**^*alarmcaption=" + i.AlarmCaption + vbCrLf
+
+            'complex
+            str += "**^*alarmringday="
+            For Each ii In i.AlarmRingDay
+                str += ii + ","
+            Next
+            str = Mid(str, 1, str.Length - 1) '마지막에 붙은 쉼표 제거 작업.
+            str += vbCrLf
+            'complex
+
+            str += "**^*alarmringtime=" + i.AlarmRingTime(0).ToString + "," + i.AlarmRingTime(1).ToString + vbCrLf
+            str += "**^*schedulename=" + i.ScheduleName + vbCrLf
+            str += "**^*scheduleringtimeafter=" + i.ScheduleRingTimeAfter(0).ToString + "," + i.ScheduleRingTimeAfter(1).ToString + vbCrLf
+
+        Next
+
+        If IO.File.Exists(SettingPath + AlarmInfoFileName) Then '파일 중복을 막음.
+            DbgLog("[a2s] delteing alarminfofile.")
+            IO.File.Delete(SettingPath + AlarmInfoFileName)
+        End If
+
+        DbgLog("[a2s] writting new alarminfofile.")
+        IO.File.WriteAllText(SettingPath + AlarmInfoFileName, str) '파일을 씀.
+
+        DbgLog("[a2s] done!")
+        '끘!
+    End Sub
+
+
 
 
 End Class

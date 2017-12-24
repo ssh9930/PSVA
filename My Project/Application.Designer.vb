@@ -32,13 +32,13 @@ Namespace My
 
         <Global.System.Diagnostics.DebuggerStepThroughAttribute()>
         Protected Overrides Sub OnCreateMainForm()
-            Me.MainForm = Global.PSVA.Setting
+            Me.MainForm = Global.PSVA.SettingWnd
             ' dont let the program run the mainform show progress.
             'Me.MainForm = Nothing
             DbgLog("OnCreateMainForm() : removed mainform setting.")
             DbgLog("OnCreateMainForm() : showing mainform")
 
-            Dim mainform_ As New Setting()
+            Dim mainform_ As New SettingWnd()
             Dim cnt As Integer = 1
 
             mainform_.ShowDialog()

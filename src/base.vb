@@ -9,18 +9,25 @@
     Public ReadOnly AlarmInfoFileName As String = ".alarminfo" 'create this file if it isnt exist
 
     ''''''''''''''''''''''''''''''''
+    Public AlarmListOnlyOnMemory As Boolean = False
 
     Public Property AlarmList As Alarm_()
+
         Get
             Return __readonly_alarm_list__
         End Get
         Set(value As Alarm_())
 
-            __readonly_alarm_list__ = value
+            __readonly_alarm_list__ = value 'set value
 
-            For Each i In AlarmListEventListeners
+            For Each i In AlarmListEventListeners 'raise alarmlisteventlisteners' events
                 i.__base__activate()
             Next
+
+            'save new alarmlist.
+            If Not AlarmListOnlyOnMemory Then
+                Alarm_.AlarmsToSetting(AlarmList)
+            End If
 
         End Set
 

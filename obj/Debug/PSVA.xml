@@ -27,6 +27,11 @@ PSVA
   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
 </summary>
 </member>
+<member name="P:PSVA.My.Resources.Resources.ic_autorenew_black_24dp">
+<summary>
+  System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+</summary>
+</member>
 <member name="P:PSVA.My.Resources.Resources.ic_done_black_24dp">
 <summary>
   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.

@@ -109,7 +109,7 @@
 
                                   End Sub
 
-        AddHandler DeleteBtn.Click, Sub()
+        AddHandler DeleteBtn.Click, Sub() 'ALARM DELETE
                                         DbgLog("DeleteBtn.Click : deleting alarm '" + alarm__.AlarmName + "'")
 
 
@@ -117,6 +117,7 @@
                                                         , "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button3) _
                                             = DialogResult.Yes Then
 
+                                            alarm__.KillAlarm() '알람 종료.
 
                                             Dim alllistinteger As Integer = 0
                                             Dim allist As Alarm_() = {}
@@ -126,12 +127,11 @@
                                             For i As Integer = 0 To AlarmList.Length - 1
                                                 Dim blacklist As Alarm_ = alarm__
 
-                                                If Not AlarmList(i).AlarmName Is blacklist.AlarmName Then
+                                                If Not AlarmList(i) Is blacklist Then
                                                     ReDim Preserve allist(alllistinteger)
                                                     allist(alllistinteger) = AlarmList(i)
                                                     alllistinteger += 1
                                                 Else
-                                                    MsgBox(5)
                                                     foundblist = True
                                                 End If
 
@@ -145,6 +145,8 @@
 
                                         End If
 
+                                        MsgBox("Alarm '" + alarm__.AlarmName + "' successfuly deleted.", MsgBoxStyle.Information, "Success")
+                                        Me.Close()
                                     End Sub
 
         AddHandler ReloadBtn.Click, Sub()

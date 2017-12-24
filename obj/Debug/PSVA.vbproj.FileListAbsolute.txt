@@ -2,7 +2,6 @@ D:\projects\PSVA\PSVA\obj\Debug\PSVA.vbprojResolveAssemblyReference.cache
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.Alarm.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.Resources.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmPanel.resources
-D:\projects\PSVA\PSVA\obj\Debug\PSVA.Setting.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.vbproj.GenerateResource.Cache
 D:\projects\PSVA\PSVA\bin\Debug\PSVA.exe.config
 D:\projects\PSVA\PSVA\bin\Debug\PSVA.exe
@@ -13,3 +12,4 @@ D:\projects\PSVA\PSVA\obj\Debug\PSVA.xml
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.pdb
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingShellForm.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingPanel.resources
+D:\projects\PSVA\PSVA\obj\Debug\PSVA.SettingWnd.resources

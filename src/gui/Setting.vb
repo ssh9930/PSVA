@@ -1,4 +1,4 @@
-﻿Public Class Setting
+﻿Public Class SettingWnd
 
     Private WithEvents alarm_list_listener As New AlarmListEventListener
     Private alarmpanel_list_int As Integer = 0
@@ -24,6 +24,11 @@
                                               AlarmMenu.Show(New Point(Me.Location.X + AlarmMenuBtn.Location.X + AlarmMenuBtn.Width,
                                                                        Me.Location.Y + AlarmMenuBtn.Location.Y + AlarmMenuBtn.Height))
                                           End Sub
+
+        AddHandler Me.ReloadBtn.Click, Sub()
+                                           Startup.ReloadAlarmList()
+                                           ReloadAlarmUI()
+                                       End Sub
 
         ' disable vertical scrolling
 
@@ -60,6 +65,9 @@
         If AlarmList.Length = 0 Then 'todo : make a whole management class about this.
             NoAlarmLabel.Visible = True
             NoAlarmPic.Visible = True
+        Else
+            NoAlarmLabel.Visible = False
+            NoAlarmPic.Visible = False
         End If
 
         firstload = False
