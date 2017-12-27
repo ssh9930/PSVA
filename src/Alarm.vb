@@ -2,6 +2,23 @@
 
     Public AlarmRingTime As Integer() = {0, 0} 'Like {10,54} 10:54
     Public AlarmRingDay As String() = {} 'Like {"mon","wed","sun"}
+    Public AlarmRingLock_ As Boolean = False
+    Public Property AlarmRingLock As Boolean
+        Get
+            Return AlarmRingLock_
+        End Get
+        Set(value As Boolean)
+            AlarmRingLock_ = value
+
+            If value Then
+                KillAlarm()
+            ElseIf alarmthread.ThreadState = Threading.ThreadState.Unstarted Then
+                StartAlarm()
+            End If
+
+        End Set
+    End Property
+
     ' Private AlarmSound //todo
 
     Public AlarmName As String
@@ -23,40 +40,41 @@
 
     Public Event AlarmRingEvent(caption As String)
 
-    Dim alarmthread As New Threading.Thread(Sub()
-                                                DbgLog("[alarmthread] alarmthread started.")
+    Public alarmthread As New Threading.Thread(Sub()
+                                                   DbgLog("[alarmthread] alarmthread started.")
 
 
-                                                For i As Integer = 0 To AlarmRingDay.Length - 1
-                                                    DbgLog("[alarmthread] alarmringday=" + AlarmRingDay(i).ToUpper + ", now=" + Now.DayOfWeek.ToString.ToUpper _
+                                                   For i As Integer = 0 To AlarmRingDay.Length - 1
+                                                       DbgLog("[alarmthread] alarmringday=" + AlarmRingDay(i).ToUpper + ", now=" + Now.DayOfWeek.ToString.ToUpper _
                                                           + ", contains=" + Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper).ToString)
 
-                                                    If Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper) Then 'alarm day!
+                                                       If Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper) Then 'alarm day!
 
-                                                        While Not dmin <= nmin + 60
-                                                            DbgLog("[alarmthread] 1Hterm/1Hloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
-                                                            Threading.Thread.Sleep(1000 * 60 * 60) '1h
-                                                        End While
+                                                           While Not dmin <= nmin + 60
+                                                               DbgLog("[alarmthread] 1Hterm/1Hloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
+                                                               Threading.Thread.Sleep(1000 * 60 * 60) '1h
+                                                           End While
 
-                                                        While Not dmin <= nmin + 3
-                                                            DbgLog("[alarmthread] 3Mterm/2Mloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
-                                                            Threading.Thread.Sleep(1000 * 60 * 2) '2m
-                                                        End While
+                                                           While Not dmin <= nmin + 3
+                                                               DbgLog("[alarmthread] 3Mterm/2Mloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
+                                                               Threading.Thread.Sleep(1000 * 60 * 2) '2m
+                                                           End While
 
-                                                        While nmin < dmin
-                                                            DbgLog("[alarmthread] 1Sterm/1Sloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString) 'todo :여기서부터는 초단위로 계산하기.
-                                                            Threading.Thread.Sleep(1000) '1sec
-                                                        End While
+                                                           While nmin < dmin
+                                                               DbgLog("[alarmthread] 1Sterm/1Sloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString) 'todo :여기서부터는 초단위로 계산하기.
+                                                               Threading.Thread.Sleep(1000) '1sec
+                                                           End While
 
-                                                        DbgLog("[alarmthread] Bingo, raising event and terminating current thread.")
-                                                        RaiseEvent AlarmRingEvent(AlarmCaption)
-                                                        Exit Sub
+                                                           If Not AlarmRingLock Then
+                                                               DbgLog("[alarmthread] Bingo, raising event and terminating current thread.")
+                                                               RaiseEvent AlarmRingEvent(AlarmCaption)
+                                                               Exit Sub
+                                                           End If
+                                                       End If
+                                                   Next
 
-                                                    End If
-                                                Next
 
-
-                                            End Sub)
+                                               End Sub)
 
     Sub New(Name As String, Cap As String, RingDay As String(), RingTime As Integer(), SchName As String, SchRingTime As Integer())
         Try

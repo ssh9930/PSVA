@@ -9,6 +9,7 @@
     Public ReadOnly AlarmInfoFileName As String = ".alarminfo" 'create this file if it isnt exist
 
     ''''''''''''''''''''''''''''''''
+    Public DoUpdateAlarmList As Boolean = True
     Public AlarmListOnlyOnMemory As Boolean = False
 
     Public Property AlarmList As Alarm_()
@@ -17,22 +18,38 @@
             Return __readonly_alarm_list__
         End Get
         Set(value As Alarm_())
-
+            DbgLog("[AlarmList] alarmlist value changed.")
             __readonly_alarm_list__ = value 'set value
 
-            For Each i In AlarmListEventListeners 'raise alarmlisteventlisteners' events
-                i.__base__activate()
-            Next
-
-            'save new alarmlist.
-            If Not AlarmListOnlyOnMemory Then
-                Alarm_.AlarmsToSetting(AlarmList)
+            If DoUpdateAlarmList Then
+                UpdateAlarmList(value)
+            Else
+                DbgLog("[AlarmList] UpdateAlarmList=0")
             End If
-
         End Set
 
 
     End Property
+
+    Public Sub UpdateAlarmList(value As Alarm_()) '수동 업데이트
+        DbgLog("[AlarmListUpdater] called.")
+
+        For Each i In AlarmListEventListeners 'raise alarmlisteventlisteners' events
+            DbgLog("[AlarmListUpdater] activating alarmlisteventlistener..")
+            i.__base__activate()
+        Next
+
+        'save new alarmlist.
+
+        If Not AlarmListOnlyOnMemory Then
+            DbgLog("[AlarmListUpdater] saving new alarmlist to disk")
+            Alarm_.AlarmsToSetting(AlarmList)
+        Else
+            DbgLog("[AlarmListUpdater] AlarmListOnlyOnMemory=1 !!")
+        End If
+
+        DbgLog("[AlarmListUpdater] ALL DONE!!")
+    End Sub
 
     Private ALELint As Integer = 0
     Private AlarmListEventListeners As AlarmListEventListener() = {}

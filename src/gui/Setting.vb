@@ -30,6 +30,8 @@
                                            ReloadAlarmUI()
                                        End Sub
 
+        AddHandler Me.AddBtn.Click, Sub() AlarmCreateWnd.ShowDialog()
+
         ' disable vertical scrolling
 
     End Sub
@@ -38,13 +40,15 @@
         DbgLog("ReloadAlarmUI(), alarmlist-int=" + AlarmList.Length.ToString)
 
         If Not firstload Then 'probably, i am called by alarmlisteventlistener, so reseting window.
-            For Each i In alarmpanel_list
-                i.Visible = False
-                i.Dispose()
-            Next
+            If Not alarmpanel_list_int = 0 Then '새로 추가해야 함.
+                For Each i In alarmpanel_list
+                    i.Visible = False
+                    i.Dispose()
+                Next
+            End If
         End If
 
-        Dim cnt As Integer = 1
+            Dim cnt As Integer = 1
 
         For Each i In AlarmList
 

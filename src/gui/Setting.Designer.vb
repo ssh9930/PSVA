@@ -31,7 +31,7 @@ Partial Class SettingWnd
         Me.NoAlarmLabel = New System.Windows.Forms.Label()
         Me.NoAlarmPic = New System.Windows.Forms.PictureBox()
         Me.AlarmMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
-        Me.NewAlarmToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AddBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.AboutBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadBtn = New System.Windows.Forms.ToolStripMenuItem()
@@ -121,16 +121,16 @@ Partial Class SettingWnd
         '
         Me.AlarmMenu.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.AlarmMenu.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.AlarmMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewAlarmToolStripMenuItem, Me.SettingBtn, Me.AboutBtn, Me.ReloadBtn})
+        Me.AlarmMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddBtn, Me.SettingBtn, Me.AboutBtn, Me.ReloadBtn})
         Me.AlarmMenu.Name = "AlarmMenu"
-        Me.AlarmMenu.Size = New System.Drawing.Size(161, 146)
+        Me.AlarmMenu.Size = New System.Drawing.Size(148, 124)
         '
-        'NewAlarmToolStripMenuItem
+        'AddBtn
         '
-        Me.NewAlarmToolStripMenuItem.Image = Global.PSVA.My.Resources.Resources.ic_alarm_add_black_24dp
-        Me.NewAlarmToolStripMenuItem.Name = "NewAlarmToolStripMenuItem"
-        Me.NewAlarmToolStripMenuItem.Size = New System.Drawing.Size(160, 30)
-        Me.NewAlarmToolStripMenuItem.Text = "New Alarm"
+        Me.AddBtn.Image = Global.PSVA.My.Resources.Resources.ic_alarm_add_black_24dp
+        Me.AddBtn.Name = "AddBtn"
+        Me.AddBtn.Size = New System.Drawing.Size(147, 30)
+        Me.AddBtn.Text = "New Alarm"
         '
         'SettingBtn
         '
@@ -187,7 +187,7 @@ Partial Class SettingWnd
     Friend WithEvents NoAlarmLabel As Label
     Friend WithEvents AlarmMenuBtn As PictureBox
     Friend WithEvents AlarmMenu As ContextMenuStrip
-    Friend WithEvents NewAlarmToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AddBtn As ToolStripMenuItem
     Friend WithEvents SettingBtn As ToolStripMenuItem
     Friend WithEvents AboutBtn As ToolStripMenuItem
     Friend WithEvents ReloadBtn As ToolStripMenuItem

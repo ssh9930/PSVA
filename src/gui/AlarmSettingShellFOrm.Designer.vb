@@ -23,9 +23,9 @@ Partial Class AlarmSettingShellForm
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Panel3 = New System.Windows.Forms.Panel()
+        Me.ReloadBtn = New PSVA.BorderButton()
         Me.DeleteBtn = New PSVA.BorderButton()
         Me.SaveBtn = New PSVA.BorderButton()
-        Me.ReloadBtn = New PSVA.BorderButton()
         Me.Panel3.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -42,6 +42,21 @@ Partial Class AlarmSettingShellForm
         Me.Panel3.Size = New System.Drawing.Size(411, 34)
         Me.Panel3.TabIndex = 18
         '
+        'ReloadBtn
+        '
+        Me.ReloadBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
+        Me.ReloadBtn.Cursor = System.Windows.Forms.Cursors.Hand
+        Me.ReloadBtn.EnableBorder = True
+        Me.ReloadBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(215, Byte), Integer))
+        Me.ReloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ReloadBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ReloadBtn.Location = New System.Drawing.Point(84, 5)
+        Me.ReloadBtn.Name = "ReloadBtn"
+        Me.ReloadBtn.Size = New System.Drawing.Size(65, 23)
+        Me.ReloadBtn.TabIndex = 2
+        Me.ReloadBtn.Text = "RELOAD"
+        Me.ReloadBtn.UseVisualStyleBackColor = False
+        '
         'DeleteBtn
         '
         Me.DeleteBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
@@ -51,7 +66,7 @@ Partial Class AlarmSettingShellForm
         Me.DeleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.DeleteBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.DeleteBtn.ForeColor = System.Drawing.Color.Maroon
-        Me.DeleteBtn.Location = New System.Drawing.Point(138, 5)
+        Me.DeleteBtn.Location = New System.Drawing.Point(155, 5)
         Me.DeleteBtn.Name = "DeleteBtn"
         Me.DeleteBtn.Size = New System.Drawing.Size(145, 23)
         Me.DeleteBtn.TabIndex = 1
@@ -68,25 +83,10 @@ Partial Class AlarmSettingShellForm
         Me.SaveBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.SaveBtn.Location = New System.Drawing.Point(12, 5)
         Me.SaveBtn.Name = "SaveBtn"
-        Me.SaveBtn.Size = New System.Drawing.Size(49, 23)
+        Me.SaveBtn.Size = New System.Drawing.Size(66, 23)
         Me.SaveBtn.TabIndex = 0
         Me.SaveBtn.Text = "SAVE"
         Me.SaveBtn.UseVisualStyleBackColor = False
-        '
-        'ReloadBtn
-        '
-        Me.ReloadBtn.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer), CType(CType(245, Byte), Integer))
-        Me.ReloadBtn.Cursor = System.Windows.Forms.Cursors.Hand
-        Me.ReloadBtn.EnableBorder = True
-        Me.ReloadBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(215, Byte), Integer), CType(CType(215, Byte), Integer), CType(CType(215, Byte), Integer))
-        Me.ReloadBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ReloadBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ReloadBtn.Location = New System.Drawing.Point(67, 5)
-        Me.ReloadBtn.Name = "ReloadBtn"
-        Me.ReloadBtn.Size = New System.Drawing.Size(65, 23)
-        Me.ReloadBtn.TabIndex = 2
-        Me.ReloadBtn.Text = "RELOAD"
-        Me.ReloadBtn.UseVisualStyleBackColor = False
         '
         'AlarmSettingShellForm
         '
