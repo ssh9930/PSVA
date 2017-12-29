@@ -37,7 +37,8 @@
     End Sub
 
     Public Sub ReloadAlarmUI() Handles Me.Load
-        DbgLog("ReloadAlarmUI(), alarmlist-int=" + AlarmList.Length.ToString)
+
+        DbgLog("ReloadAlarmUI(), called.")
 
         If Not firstload Then 'probably, i am called by alarmlisteventlistener, so reseting window.
             If Not alarmpanel_list_int = 0 Then '새로 추가해야 함.
@@ -48,7 +49,22 @@
             End If
         End If
 
-            Dim cnt As Integer = 1
+        If AlarmList Is Nothing Then '예외발생 방지 구문
+            DbgLog("ReloadAlarmUI(), AlarmList=Nothing!")
+            NoAlarmLabel.Visible = True
+            NoAlarmPic.Visible = True
+            Exit Sub
+        End If
+
+        If AlarmList.Length = 0 Then
+            NoAlarmLabel.Visible = True
+            NoAlarmPic.Visible = True
+        Else
+            NoAlarmLabel.Visible = False
+            NoAlarmPic.Visible = False
+        End If
+
+        Dim cnt As Integer = 1
 
         For Each i In AlarmList
 
@@ -65,14 +81,6 @@
             alarmpanel_list_int += 1
 
         Next
-
-        If AlarmList.Length = 0 Then 'todo : make a whole management class about this.
-            NoAlarmLabel.Visible = True
-            NoAlarmPic.Visible = True
-        Else
-            NoAlarmLabel.Visible = False
-            NoAlarmPic.Visible = False
-        End If
 
         firstload = False
     End Sub

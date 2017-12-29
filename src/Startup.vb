@@ -10,7 +10,9 @@
             End If
 
             IO.File.Create(SettingPath + AlarmInfoFileName)
-            DbgLog("Startup : created empty alarminfofile.")
+            DbgLog("Startup : created empty alarminfofile, restarting application.") '재시작 안하면 사용 중이라고 뜨면서 걸림.
+            Application.Restart()
+            End
         End If
 
         DbgLog("Startup : getting alarm list & setting to AlarmList..")
@@ -20,7 +22,7 @@
     End Sub
 
 
-    Shared Sub ReloadAlarmList(Optional IsThisStartupProcedure As Boolean = False) 'todo : 알람 리로드시 알람 리셋 후 다시시작하는거 작업하기!!
+    Shared Sub ReloadAlarmList(Optional IsThisStartupProcedure As Boolean = False)
         DbgLog("ReloadAlarmList() : Reloading alarmlist and killing alarms in alarmlist.")
 
         '시작 전 알람 리스트에 있는 알람 모두 초기화.

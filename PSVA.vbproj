@@ -79,6 +79,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="src\AlarmListEventListener.vb" />
+    <Compile Include="src\AlarmRIngManager.vb" />
     <Compile Include="src\Events.vb" />
     <Compile Include="src\Alarm.vb" />
     <Compile Include="src\base.vb" />

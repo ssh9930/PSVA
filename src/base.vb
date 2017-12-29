@@ -1,7 +1,7 @@
 ﻿Module base
 
     Public ReadOnly SettingPath As String = Environ("appdata") + "\PSVA\"
-    Public ReadOnly EnableLogging As Boolean = False 'todo : work on this
+    Public ReadOnly EnableLogging As Boolean = True 'todo : work on this
     Public ReadOnly LogPath As String = "C:\Users\ssh9930\Desktop\psva.log"
 
     Private __readonly_alarm_list__ As Alarm_()
@@ -67,16 +67,20 @@
     End Sub
 
 
+
     ''''''''''''''''''''''''''''''''
 
 
     Public Sub DbgLog(text As String)
-        Debug.WriteLine(text)
+        Try
+            Debug.WriteLine(text)
 
-        If EnableLogging Then
-            FileIO.FileSystem.WriteAllText(LogPath, "[PSVA]" + text + vbCrLf, 1)
-        End If
-
+            If EnableLogging Then
+                FileIO.FileSystem.WriteAllText(LogPath, "[PSVA]" + text + vbCrLf, 1)
+            End If
+        Catch ex As Exception
+            FileIO.FileSystem.WriteAllText(LogPath, "[PSVA LOGGER] EXCEPTION!", 1)
+        End Try
     End Sub
 
 End Module

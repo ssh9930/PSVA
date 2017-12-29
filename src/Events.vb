@@ -13,5 +13,12 @@
 
         End Sub
 
+        Private Sub __OnError(sender As Object, e As ApplicationServices.UnhandledExceptionEventArgs) Handles MyBase.UnhandledException
+
+            MessageBox.Show("Something went terribly wrong." + vbCrLf + vbCrLf + "Exception : " + e.Exception.GetType.ToString +
+                            vbCrLf + "Full Description : " + e.Exception.ToString, "", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Sub
+
     End Class
 End Namespace

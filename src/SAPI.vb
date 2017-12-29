@@ -1,6 +1,6 @@
 ﻿Public Class SAPI
 
-    Shared Sub Speak(text As String, Optional Asynchronous As Boolean = True) 'multithread
+    Shared Sub Speak(text As String, Optional Asynchronous As Boolean = False) 'multithread
         DbgLog("[sapi] Speak() : text=private, asynchronous=" + Asynchronous.ToString)
 
         If Asynchronous Then
