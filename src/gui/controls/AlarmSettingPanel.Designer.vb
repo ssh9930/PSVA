@@ -98,7 +98,7 @@ Partial Class AlarmSettingPanel
         Me.AlarmMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand
         Me.AlarmMenuBtn.Image = Global.PSVA.My.Resources.Resources.ic_alarm_add_black_24dp
         Me.AlarmMenuBtn.Location = New System.Drawing.Point(12, 17)
-        Me.AlarmMenuBtn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.AlarmMenuBtn.Margin = New System.Windows.Forms.Padding(2)
         Me.AlarmMenuBtn.Name = "AlarmMenuBtn"
         Me.AlarmMenuBtn.Size = New System.Drawing.Size(40, 40)
         Me.AlarmMenuBtn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
@@ -531,7 +531,7 @@ Partial Class AlarmSettingPanel
         '
         Me.ScheduleTImeM.Font = New System.Drawing.Font("Consolas", 21.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.ScheduleTImeM.Location = New System.Drawing.Point(118, 192)
-        Me.ScheduleTImeM.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.ScheduleTImeM.Maximum = New Decimal(New Integer() {59, 0, 0, 0})
         Me.ScheduleTImeM.Name = "ScheduleTImeM"
         Me.ScheduleTImeM.Size = New System.Drawing.Size(70, 41)
         Me.ScheduleTImeM.TabIndex = 30
@@ -614,7 +614,7 @@ Partial Class AlarmSettingPanel
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Panel3)
         Me.Name = "AlarmSettingPanel"
-        Me.Size = New System.Drawing.Size(350, 898)
+        Me.Size = New System.Drawing.Size(333, 881)
         Me.Panel3.ResumeLayout(False)
         Me.Panel3.PerformLayout()
         CType(Me.AlarmMenuBtn, System.ComponentModel.ISupportInitialize).EndInit()

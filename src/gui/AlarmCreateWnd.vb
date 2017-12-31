@@ -4,6 +4,12 @@
 
         AddHandler Me.NextBtn.Click, Sub()
 
+                                         If AlarmName.Text.Replace(" ", "").Replace("    ", "").Replace(vbCrLf, "").Length = 0 Or
+                                        AlarmCaption.Text.Replace(" ", "").Replace("    ", "").Replace(vbCrLf, "").Length = 0 Then
+                                             MessageBox.Show("You can't set alarm name or caption to blank.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                             Exit Sub
+                                         End If
+
                                          Dim target As New Alarm_(Label_1.Text, Label_2.Text, {}, {0, 0} _
                                                                                          , "", {0, 0})
                                          target.AlarmRingLock = True

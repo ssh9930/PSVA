@@ -22,6 +22,7 @@ Partial Class AlarmCreateWnd
     '코드 편집기에서는 수정하지 마세요.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AlarmCreateWnd))
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.AlarmMenuBtn = New System.Windows.Forms.PictureBox()
         Me.Label_2 = New System.Windows.Forms.Label()
@@ -173,6 +174,7 @@ Partial Class AlarmCreateWnd
         Me.Controls.Add(Me.AlarmName)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.Panel3)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(402, 329)
         Me.MinimizeBox = False

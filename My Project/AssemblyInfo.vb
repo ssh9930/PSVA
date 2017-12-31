@@ -10,9 +10,9 @@ Imports System.Runtime.InteropServices
 
 <Assembly: AssemblyTitle("PSVA")>
 <Assembly: AssemblyDescription("Personal Schedule Voice Assistant")>
-<Assembly: AssemblyCompany("ssh9930")>
-<Assembly: AssemblyProduct("PSVA")>
-<Assembly: AssemblyCopyright("")>
+<Assembly: AssemblyCompany("SW1FT")>
+<Assembly: AssemblyProduct("Personal Schedule Voice Assistant")>
+<Assembly: AssemblyCopyright("SW1FT")>
 <Assembly: AssemblyTrademark("")>
 
 <Assembly: ComVisible(False)>

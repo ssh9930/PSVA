@@ -30,7 +30,10 @@
                                            ReloadAlarmUI()
                                        End Sub
 
-        AddHandler Me.AddBtn.Click, Sub() AlarmCreateWnd.ShowDialog()
+        AddHandler Me.AddBtn.Click, Sub()
+                                        Dim wnd As New AlarmCreateWnd()
+                                        wnd.ShowDialog()
+                                    End Sub
 
         ' disable vertical scrolling
 

@@ -7,6 +7,8 @@
         InitializeComponent()
         alarm__ = alarm_
 
+        Me.Text = alarm__.AlarmName
+
         If new_one Then
             DeleteBtn.Visible = False
             SaveBtn.Text = "Add"
@@ -319,12 +321,7 @@
         AddHandler DeleteBtn.Click, Sub() 'ALARM DELETE
                                         DbgLog("DeleteBtn.Click : deleting alarm '" + alarm__.AlarmName + "'")
 
-
-                                        If MessageBox.Show("Are you sure want to delete alarm '" + alarm__.AlarmName + "' ?" _
-                                                        , "Warning", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information, MessageBoxDefaultButton.Button3) _
-                                            = DialogResult.Yes Then
-
-                                            alarm__.KillAlarm() '알람 종료.
+                                        alarm__.KillAlarm() '알람 종료.
 
                                             Dim alllistinteger As Integer = 0
                                             Dim allist As Alarm_() = {}
@@ -348,9 +345,7 @@
 
                                             Next
 
-                                            AlarmList = allist
-
-                                        End If
+                                        AlarmList = allist
 
                                         MsgBox("Alarm '" + alarm__.AlarmName + "' successfuly deleted.", MsgBoxStyle.Information, "Success")
                                         Me.Close()

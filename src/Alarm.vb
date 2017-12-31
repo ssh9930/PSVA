@@ -50,6 +50,11 @@
 
                                                            If Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper) Then 'alarm day
 
+                                                               If nmin >= dmin Then '알람이 울린걸로 간주..
+                                                                   DbgLog("[alarmthread] alarmringtime already passed, terminating thread.")
+                                                                   Exit Sub
+                                                               End If
+
                                                                While Not dmin <= nmin + 60
                                                                    DbgLog("[alarmthread] 1Hterm/1Hloop, dmin=" + dmin.ToString + ", nmin=" + nmin.ToString)
                                                                    Threading.Thread.Sleep(1000 * 60 * 60) '1h

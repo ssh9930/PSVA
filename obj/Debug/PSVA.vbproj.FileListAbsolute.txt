@@ -14,4 +14,3 @@ D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingShellForm.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmSettingPanel.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.SettingWnd.resources
 D:\projects\PSVA\PSVA\obj\Debug\PSVA.AlarmCreateWnd.resources
-D:\projects\PSVA\PSVA\obj\Debug\PSVA.AboutFOrm.resources

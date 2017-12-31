@@ -22,6 +22,7 @@ Partial Class AlarmSettingShellForm
     '코드 편집기에서는 수정하지 마세요.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(AlarmSettingShellForm))
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.ReloadBtn = New PSVA.BorderButton()
         Me.DeleteBtn = New PSVA.BorderButton()
@@ -96,6 +97,7 @@ Partial Class AlarmSettingShellForm
         Me.ClientSize = New System.Drawing.Size(411, 536)
         Me.Controls.Add(Me.Panel3)
         Me.DoubleBuffered = True
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MaximizeBox = False
         Me.MaximumSize = New System.Drawing.Size(427, 575)
         Me.MinimizeBox = False
