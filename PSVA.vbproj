@@ -182,6 +182,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="src\image\psva.png" />
     <None Include="src\image\ic_autorenew_black_24dp.png" />
     <Content Include="src\image\ic_alarm_add_black_24dp.png" />
     <Content Include="src\image\ic_done_black_24dp.png" />

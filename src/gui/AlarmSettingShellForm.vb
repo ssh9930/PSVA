@@ -73,6 +73,9 @@
         alarmpanel.Location = New Point(0, 0)
         alarmpanel.Size = New Point(411, 500)
 
+        'basic settings
+        alarmpanel.RingDayM.Checked = True
+
         'handler setting
         AddHandler alarmpanel.RingDayM.CheckedChanged, Sub() ChkBtnEvent()
         AddHandler alarmpanel.RingDayTu.CheckedChanged, Sub() ChkBtnEvent()
@@ -89,9 +92,11 @@
 
     End Sub
 
+    Private RingdayCnt As Integer = 0
     Private ReactAtCheckedCHange As Boolean = True
 
     Private Sub ChkBtnEvent()
+
         If ReactAtCheckedCHange Then
             ReactAtCheckedCHange = False
             With alarmpanel
@@ -194,6 +199,19 @@
                                       Else
                                           DbgLog("SaveBtn.Click : saving alarm '" + alarm__.AlarmName + "', alarmlist-int=" + AlarmList.Length.ToString)
                                       End If
+
+                                      With alarmpanel
+                                          If .RingDayM.Checked = False And .RingDayTu.Checked = False And .RIngDayW.Checked = False _
+                                              And .RingDayTh.Checked = False And .RIngDayF.Checked = False And .RingDaySa.Checked = False _
+                                              And .RingDaySu.Checked = False Then
+
+                                              MessageBox.Show("You have to check at least on day." _
+                                                        , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                              Exit Sub
+
+                                          End If
+                                      End With
+
 
                                       alarm__.AlarmName = alarmpanel.AlarmName.Text
                                       alarm__.AlarmCaption = alarmpanel.AlarmCaption.Text

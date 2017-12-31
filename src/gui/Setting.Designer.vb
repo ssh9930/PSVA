@@ -33,7 +33,6 @@ Partial Class SettingWnd
         Me.AlarmMenu = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.AddBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.SettingBtn = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.ReloadBtn = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel3.SuspendLayout()
         CType(Me.AlarmMenuBtn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -121,9 +120,9 @@ Partial Class SettingWnd
         '
         Me.AlarmMenu.Font = New System.Drawing.Font("맑은 고딕", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(129, Byte))
         Me.AlarmMenu.ImageScalingSize = New System.Drawing.Size(24, 24)
-        Me.AlarmMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddBtn, Me.SettingBtn, Me.AboutBtn, Me.ReloadBtn})
+        Me.AlarmMenu.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddBtn, Me.SettingBtn, Me.ReloadBtn})
         Me.AlarmMenu.Name = "AlarmMenu"
-        Me.AlarmMenu.Size = New System.Drawing.Size(148, 124)
+        Me.AlarmMenu.Size = New System.Drawing.Size(148, 94)
         '
         'AddBtn
         '
@@ -136,21 +135,14 @@ Partial Class SettingWnd
         '
         Me.SettingBtn.Image = Global.PSVA.My.Resources.Resources.ic_settings_black_24dp
         Me.SettingBtn.Name = "SettingBtn"
-        Me.SettingBtn.Size = New System.Drawing.Size(160, 30)
+        Me.SettingBtn.Size = New System.Drawing.Size(147, 30)
         Me.SettingBtn.Text = "Settings"
-        '
-        'AboutBtn
-        '
-        Me.AboutBtn.Image = Global.PSVA.My.Resources.Resources.ic_info_black_24dp
-        Me.AboutBtn.Name = "AboutBtn"
-        Me.AboutBtn.Size = New System.Drawing.Size(160, 30)
-        Me.AboutBtn.Text = "About"
         '
         'ReloadBtn
         '
         Me.ReloadBtn.Image = Global.PSVA.My.Resources.Resources.ic_autorenew_black_24dp
         Me.ReloadBtn.Name = "ReloadBtn"
-        Me.ReloadBtn.Size = New System.Drawing.Size(160, 30)
+        Me.ReloadBtn.Size = New System.Drawing.Size(147, 30)
         Me.ReloadBtn.Text = "Reload"
         '
         'SettingWnd
@@ -189,6 +181,5 @@ Partial Class SettingWnd
     Friend WithEvents AlarmMenu As ContextMenuStrip
     Friend WithEvents AddBtn As ToolStripMenuItem
     Friend WithEvents SettingBtn As ToolStripMenuItem
-    Friend WithEvents AboutBtn As ToolStripMenuItem
     Friend WithEvents ReloadBtn As ToolStripMenuItem
 End Class

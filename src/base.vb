@@ -79,7 +79,7 @@
                 FileIO.FileSystem.WriteAllText(LogPath, "[PSVA]" + text + vbCrLf, 1)
             End If
         Catch ex As Exception
-            FileIO.FileSystem.WriteAllText(LogPath, "[PSVA LOGGER] EXCEPTION!", 1)
+            Debug.WriteLine(LogPath, "[PSVA LOGGER] EXCEPTION!", 1)
         End Try
     End Sub
 

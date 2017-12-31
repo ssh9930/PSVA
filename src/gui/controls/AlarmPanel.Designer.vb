@@ -29,9 +29,9 @@ Partial Class AlarmPanel
         Me.AlarmTime = New System.Windows.Forms.Label()
         Me.AppointmentPic = New System.Windows.Forms.PictureBox()
         Me.AppointName = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.SchedulePIc = New System.Windows.Forms.PictureBox()
         CType(Me.AppointmentPic, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SchedulePIc, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'AlarmEditBtn
@@ -44,7 +44,7 @@ Partial Class AlarmPanel
         Me.AlarmEditBtn.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.AlarmEditBtn.ForeColor = System.Drawing.Color.Black
         Me.AlarmEditBtn.Location = New System.Drawing.Point(348, 42)
-        Me.AlarmEditBtn.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.AlarmEditBtn.Margin = New System.Windows.Forms.Padding(2)
         Me.AlarmEditBtn.Name = "AlarmEditBtn"
         Me.AlarmEditBtn.Size = New System.Drawing.Size(56, 24)
         Me.AlarmEditBtn.TabIndex = 25
@@ -110,22 +110,22 @@ Partial Class AlarmPanel
         Me.AppointName.TabIndex = 27
         Me.AppointName.Text = "APPOINTMENT NAME"
         '
-        'PictureBox1
+        'SchedulePIc
         '
-        Me.PictureBox1.Image = Global.PSVA.My.Resources.Resources.ic_done_black_24dp
-        Me.PictureBox1.Location = New System.Drawing.Point(216, 7)
-        Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(20, 20)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.PictureBox1.TabIndex = 26
-        Me.PictureBox1.TabStop = False
+        Me.SchedulePIc.Image = Global.PSVA.My.Resources.Resources.ic_done_black_24dp
+        Me.SchedulePIc.Location = New System.Drawing.Point(216, 7)
+        Me.SchedulePIc.Name = "SchedulePIc"
+        Me.SchedulePIc.Size = New System.Drawing.Size(20, 20)
+        Me.SchedulePIc.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.SchedulePIc.TabIndex = 26
+        Me.SchedulePIc.TabStop = False
         '
         'AlarmPanel
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(7.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.Controls.Add(Me.AppointName)
-        Me.Controls.Add(Me.PictureBox1)
+        Me.Controls.Add(Me.SchedulePIc)
         Me.Controls.Add(Me.AlarmEditBtn)
         Me.Controls.Add(Me.AlarmName)
         Me.Controls.Add(Me.AppointmentPic)
@@ -135,7 +135,7 @@ Partial Class AlarmPanel
         Me.Name = "AlarmPanel"
         Me.Size = New System.Drawing.Size(409, 80)
         CType(Me.AppointmentPic, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SchedulePIc, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -148,5 +148,5 @@ Partial Class AlarmPanel
     Friend WithEvents Line As Line
     Friend WithEvents AlarmTime As Label
     Friend WithEvents AppointName As Label
-    Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents SchedulePIc As PictureBox
 End Class

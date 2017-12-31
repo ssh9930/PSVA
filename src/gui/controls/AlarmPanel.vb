@@ -30,9 +30,11 @@
             AppointName.Text = alarm_.ScheduleName
 
             AlarmCaption.Text = alarm_.AlarmCaption + vbCrLf
-            For Each i As String In alarm_.AlarmRingDay
-                AlarmCaption.Text += i.ToUpper + " "
-            Next
+        For Each i As String In alarm_.AlarmRingDay
+            AlarmCaption.Text += i.ToUpper + " "
+        Next
+
+        SchedulePIc.Visible = Not alarm_.ScheduleName.Replace(" ", "").Replace("    ", "").Replace(vbCrLf, "").Length = 0
 
 
     End Sub
