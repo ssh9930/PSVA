@@ -41,7 +41,8 @@
     Public Event AlarmRingEvent(caption As String)
 
     Public alarmthread As New Threading.Thread(Sub()
-                                                   DbgLog("[alarmthread] alarmthread started.")
+                                                   DbgLog("[alarmthread] alarmthread started. the thread DOES NOT gets terminated itself.")
+                                                   'TODO: 함수에서 빠지지 말고 다음알람 기다리기
 
                                                    Do
                                                        For i As Integer = 0 To AlarmRingDay.Length - 1
@@ -71,7 +72,7 @@
                                                                End While
 
                                                                If Not AlarmRingLock Then
-                                                                   DbgLog("[alarmthread] Bingo, raising event and terminating current thread.")
+                                                                   DbgLog("[alarmthread] Bingo, raising event and waiting for another change") 'TODO: 함수에서 빠지지 말고 다음알람 기다리기
                                                                    RaiseEvent AlarmRingEvent(AlarmCaption) '조금 지나도 안쓰이면 이벤트 삭제할꺼임.
                                                                    AlarmRingManager.StartAlarmRingProcedure(Me)
                                                                    Exit Sub
