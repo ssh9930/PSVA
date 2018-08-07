@@ -34,13 +34,28 @@
 
     Private ReadOnly Property dmin As Integer
         Get
-            Return AlarmRingTime(0) * 60 + AlarmRingTime(1)
+            If Not WaitForNextDay Then
+                Return AlarmRingTime(0) * 60 + AlarmRingTime(1)
+            Else
+                Return 60 * 24 - 1 '12시에 다음알람이 시작됨
+            End If
         End Get
+    End Property
+
+    Private WaitForNextDay_ As Boolean = False
+    Private Property WaitForNextDay As Boolean
+        Get
+            Return WaitForNextDay_
+        End Get
+        Set(value As Boolean)
+            WaitForNextDay_ = value
+        End Set
     End Property
 
     Public Event AlarmRingEvent(caption As String)
 
     Public alarmthread As New Threading.Thread(Sub()
+                                                   DbgLog("[alarmthread] alarmname: " + AlarmName)
                                                    DbgLog("[alarmthread] alarmthread started. the thread DOES NOT gets terminated itself.")
                                                    'TODO: 함수에서 빠지지 말고 다음알람 기다리기
 
@@ -52,8 +67,9 @@
                                                            If Now.DayOfWeek.ToString.ToUpper.Contains(AlarmRingDay(i).ToUpper) Then 'alarm day
 
                                                                If nmin >= dmin Then '알람이 울린걸로 간주..
-                                                                   DbgLog("[alarmthread] alarmringtime already passed, terminating thread.")
-                                                                   Exit Sub
+                                                                   DbgLog("[alarmthread] alarmringtime already passed, waiting for next day..")
+                                                                   WaitForNextDay = True
+                                                                   'Exit Sub
                                                                End If
 
                                                                While Not dmin <= nmin + 60
@@ -71,33 +87,26 @@
                                                                    Threading.Thread.Sleep(1000) '1sec
                                                                End While
 
-                                                               If Not AlarmRingLock Then
+                                                               If Not WaitForNextDay Then
+__dmin_equals_nmin__:
                                                                    DbgLog("[alarmthread] Bingo, raising event and waiting for another change") 'TODO: 함수에서 빠지지 말고 다음알람 기다리기
                                                                    RaiseEvent AlarmRingEvent(AlarmCaption) '조금 지나도 안쓰이면 이벤트 삭제할꺼임.
                                                                    AlarmRingManager.StartAlarmRingProcedure(Me)
-                                                                   Exit Sub
+                                                                   'Exit Sub
+                                                                   Continue Do
+                                                               Else
+                                                                   DbgLog("[alarmthread] Next day came, running the normal waiting procedure")
+                                                                   WaitForNextDay = False
+
+                                                                   If nmin = dmin Then '만약에 알람시간이 0시 0분이면 다시 되돌아갔을때 알람을 놓치므로 이게 필요
+                                                                       GoTo __dmin_equals_nmin__
+                                                                   End If
+
+                                                                   Continue Do
+
                                                                End If
                                                            End If
                                                        Next
-
-                                                       '다음 날이 오기를 기다림.
-                                                       Dim dmin_ As Integer = (23 * 60) + 58 '23:58.
-
-                                                       While Not dmin_ <= nmin + 60
-                                                           DbgLog("[alarmthread] Waiting for another day, 1Hterm/1Hloop, dmin_ (23:58)=" + dmin_.ToString + ", nmin=" + nmin.ToString)
-                                                           Threading.Thread.Sleep(1000 * 60 * 60) '1h
-                                                       End While
-
-                                                       While Not dmin_ <= nmin + 3
-                                                           DbgLog("[alarmthread] Waiting for another day, 3Mterm/2Mloop, dmin_ (23:58)=" + dmin_.ToString + ", nmin=" + nmin.ToString)
-                                                           Threading.Thread.Sleep(1000 * 60 * 2) '2m
-                                                       End While
-
-                                                       While nmin < dmin_
-                                                           DbgLog("[alarmthread] Waiting for another day, 1Sterm/1Sloop, dmin_ (23:58)=" + dmin_.ToString + ", nmin=" + nmin.ToString)
-                                                           Threading.Thread.Sleep(1000) '1sec
-
-                                                       End While
                                                    Loop
 
                                                End Sub)
